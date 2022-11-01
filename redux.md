@@ -88,3 +88,5 @@ components => dispatch => action => forwarded to reducer
 central data (store) => subscription => components
 reducer function => mutation => central data (store) => subscription => components
 components => dispatch => action => forwarded to reducer
+
+# install redux and react-redux to simplify conection
