@@ -1,11 +1,12 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 // this works as create reducer
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
+const initialAuthState = { isAuthenticated: false };
 
 const counterSlice = createSlice({
   name: 'counter',
-  initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
       state.counter++;
@@ -18,6 +19,19 @@ const counterSlice = createSlice({
     },
     toggleCounter(state) {
       state.showCounter = !state.showCounter;
+    }
+  }
+});
+
+const authSlice = createSlice({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
     }
   }
 });
@@ -62,18 +76,19 @@ const counterSlice = createSlice({
 // this is an action creating function, 
 // so we dont have to manually write types for actions or write the actions themselves
 
-const store = configureStore({
-  reducer: counterSlice.reducer
-});
+// const store = configureStore({
+//   reducer: counterSlice.reducer
+// });
 
 // this is an alternative for several reducers
-// const store = configureStore({
-//   reducer: { counter: counterSlice.reducer }
-// });
+const store = configureStore({
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }
+});
 
 // const store = createStore(counterSlice.reducer);
 // if we had multiple slices, this is a problem, because there can exist several slices
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;
