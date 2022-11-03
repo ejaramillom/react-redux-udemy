@@ -14,7 +14,7 @@ const counterSlice = createSlice({
       state.counter--;
     },
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload; // payload is the name of the property used in the object of toolkit
     },
     toggleCounter(state) {
       state.showCounter = !state.showCounter;
@@ -58,6 +58,10 @@ const counterSlice = createSlice({
 //   return state;
 // };
 
+// counterSlice.actions.toggleCounter;
+// this is an action creating function, 
+// so we dont have to manually write types for actions or write the actions themselves
+
 const store = configureStore({
   reducer: counterSlice.reducer
 });
@@ -69,5 +73,7 @@ const store = configureStore({
 
 // const store = createStore(counterSlice.reducer);
 // if we had multiple slices, this is a problem, because there can exist several slices
+
+export const counterActions = counterSlice.actions;
 
 export default store;
