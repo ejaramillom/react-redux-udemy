@@ -90,3 +90,14 @@ reducer function => mutation => central data (store) => subscription => componen
 components => dispatch => action => forwarded to reducer
 
 # install redux and react-redux to simplify conection
+
+# side effects, async tasks and redux
+
+so, reducers are pure functions, they always return the same result for the same input
+so, http requests are not pure requests
+then, reducers SHOULD NOT have any of these things
+
+side effects and async tasks are executed in:
+
+- components: useEffect
+- action creator: create your custom actions
